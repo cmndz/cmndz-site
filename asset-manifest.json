@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/cmndz-site/static/css/main.f0c3a969.css",
+    "main.css": "/cmndz-site/static/css/main.521dba2f.css",
     "main.js": "/cmndz-site/static/js/main.c6b14857.js",
     "static/js/787.fb265414.chunk.js": "/cmndz-site/static/js/787.fb265414.chunk.js",
     "static/media/loop.mp4": "/cmndz-site/static/media/loop.6918a003bc630c89c141.mp4",
@@ -32,12 +32,12 @@
     "static/media/arrow-bottom.svg": "/cmndz-site/static/media/arrow-bottom.a9f3b3d90286fe0a2a2cd311a7b24136.svg",
     "static/media/arrow-next.svg": "/cmndz-site/static/media/arrow-next.8e13984ef5f8bd37a75b2bb0f95c6421.svg",
     "static/media/arrow-prev.svg": "/cmndz-site/static/media/arrow-prev.946e4e1edb3c63b53969b1653d439602.svg",
-    "main.f0c3a969.css.map": "/cmndz-site/static/css/main.f0c3a969.css.map",
+    "main.521dba2f.css.map": "/cmndz-site/static/css/main.521dba2f.css.map",
     "main.c6b14857.js.map": "/cmndz-site/static/js/main.c6b14857.js.map",
     "787.fb265414.chunk.js.map": "/cmndz-site/static/js/787.fb265414.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f0c3a969.css",
+    "static/css/main.521dba2f.css",
     "static/js/main.c6b14857.js"
   ]
 }
