@@ -48,6 +48,9 @@ ul {
 	scroll-behavior: smooth;
 }
 
+#controlsections {
+	display: none;
+}
 
 @media only screen and (min-width: 900px) {
 	#controlsections {

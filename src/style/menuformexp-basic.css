@@ -49,7 +49,80 @@ ul {
 	scroll-behavior: smooth;
 }
 
-@media only screen and (max-width: 800px) {
+
+@media only screen and (max-width: 400px) {	
+	#menuformexp {
+		width: 100vw;
+		min-height: 100vh;
+		background-color: var(--white);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 50px 0;
+		overflow: hidden;
+	}
+	.menuformexp__title {
+		width: 340px;
+		margin-bottom: 50px;
+	}
+	.menuformexp__listitem {
+		width: 340px;
+		border-bottom: solid var(--black) 5px;
+		padding-bottom: 10px;
+		margin-bottom: 20px;
+		display: grid;
+		grid-template-columns: 1fr 9fr;
+	}
+	.menuformexp__listicon {
+		width: 40px;
+		height: 40px;
+		grid-column: 1 / 2;
+		grid-row: 1 / 2;
+		border-radius: 50px;
+		background-color: var(--black);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 3px 20px 0 0;
+	}
+	.menuformexp__listimg {
+		width: 60%;
+		height: auto;
+	}
+	.menuformexp__listheader {
+		margin: 0 50px 0 0;
+		padding-bottom: 15px;
+		grid-column: 2 / 3;
+		grid-row: 1 / 2;
+	}
+	.menuformexp__listdetail {
+		grid-column: 2 / 3;
+		grid-row: 2 / 3;
+		padding-bottom: 15px;
+		padding-right: 0px;
+	}
+	.menuformexp__listtags {
+		grid-column: 2 / 3;
+		grid-row: 3 / 4;
+		display: flex;
+		flex-flow: wrap row;
+		align-content: flex-start;
+		padding-bottom: 15px;
+	}
+	.menuformexp__listtagsitem {
+		background-color: var(--black);
+		color: var(--white);
+		margin: 0px;
+		justify-content: flex-start;
+		padding: 5px 8px 5px 8px;
+		margin: 1px;
+		border-radius: 15px;
+		font-weight: 300;
+		font-size: 10px;
+		height: 21px;
+	}
+}
+@media only screen and (min-width: 400px) and (max-width: 800px) {
 	#menuformexp {
 		width: 100vw;
 		min-height: 100vh;
@@ -98,7 +171,7 @@ ul {
 		grid-column: 2 / 3;
 		grid-row: 2 / 3;
 		padding-bottom: 15px;
-		padding-right: 50px;
+		padding-right: 0px;
 	}
 	.menuformexp__listtags {
 		grid-column: 2 / 3;
@@ -121,7 +194,7 @@ ul {
 		height: 21px;
 	}
 }
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 800px) and (max-width: 1400px) {
 	#menuformexp {
 		width: 100vw;
 		min-height: 100vh;
