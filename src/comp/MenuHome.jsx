@@ -3,7 +3,7 @@ import vidHome from "./../resources/loop.mp4";
 
 function MenuHome() {
 	return (
-		<div id="mnuHome" className="menu">
+		<div id="mnuHome" className="menu menu-first">
 			<div className="back">
 				<video className="back-video" src={vidHome} autoPlay loop muted></video>
 			</div>
