@@ -72,7 +72,7 @@ function MenuFormExp() {
 							<h4>Marzo 2021 - Agosto 2021</h4>
 						</div>
 						<div className="list-detail">
-							<p>Realice los siguientes cursos:</p>
+							<p>Dentro del plan de estudios de la carrera <strong>Front End Web Developer</strong>, realice los siguientes cursos:</p>
 							<ul>
 								<li>Desarrollo Web con HTML</li>
 								<li>Introduccion al Paradigma de Objetos</li>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import imgMenuCollapse from "./../resources/menu-collapse.svg";
 import imgMenuExpand from "./../resources/menu-expand.svg";
 import imgLogo from "./../resources/logo-w.svg";
+import CV from "./../resources/CV-202209.pdf"
 import React from "react";
 
 function NavBar() {
@@ -41,7 +42,7 @@ function NavBar() {
 					<a className="side-a" href="#menucontact">
 						<p className="navbar-p">CONTACTO</p>
 					</a>
-					<a className="side-a" href="#top">
+					<a className="side-a" href={CV} target="_blank" rel="noreferrer noopener">
 						<p className="navbar-p">DESCARGAR CV</p>
 					</a>
 				</div>
@@ -56,7 +57,7 @@ function NavBar() {
 				<a className="body-a" href="#menucontact" onClick={() => setCollapse(!isCollapse)}>
 					<p className="navbar-p">CONTACTO</p>
 				</a>
-				<a className="body-a" href="#top" onClick={() => setCollapse(!isCollapse)}>
+				<a className="body-a" href={CV} target="_blank" rel="noreferrer noopener" onClick={() => setCollapse(!isCollapse)}>
 					<p className="navbar-p">DESCARGAR CV</p>
 				</a>
 			</div>
