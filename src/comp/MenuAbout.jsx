@@ -18,6 +18,7 @@ import imgVS from "./../resources/know-vs.svg";
 import imgVSCode from "./../resources/know-vscode.svg";
 import imgExcel from "./../resources/know-xls.svg";
 import imgFigma from "./../resources/know-figma.svg";
+import imgProfile from "./../resources/profile.png";
 
 function MenuAbout() {
 	return (
@@ -26,7 +27,9 @@ function MenuAbout() {
 				<div className="title">
 					<h1>SOBRE MI</h1>
 				</div>
-				<div className="bloque --menuaboutbloqueA"></div>
+				<div className="bloque --menuaboutbloqueA">
+					<img className = "--img-profile" src={imgProfile} alt="" />
+				</div>
 				<div className="bloque --menuaboutbloqueB">
 					<p className="bloque-p --menuaboutPrename">Mi nombre es</p>
 					<h3 className="--menuaboutName">Carlos Alfredo Méndez</h3>
