@@ -1,10 +1,11 @@
 {
   "files": {
-    "main.css": "/cmndz-site/static/css/main.339a0b7e.css",
-    "main.js": "/cmndz-site/static/js/main.af18bcab.js",
+    "main.css": "/cmndz-site/static/css/main.5931de27.css",
+    "main.js": "/cmndz-site/static/js/main.ec4c2c71.js",
     "static/js/787.fb265414.chunk.js": "/cmndz-site/static/js/787.fb265414.chunk.js",
     "static/media/loop.mp4": "/cmndz-site/static/media/loop.6918a003bc630c89c141.mp4",
-    "static/media/CV-202209.pdf": "/cmndz-site/static/media/CV-202209.7585b6c693f366e62812.pdf",
+    "static/media/CV-202209.pdf": "/cmndz-site/static/media/CV-202209.68f1e0318c2224eb4e6b.pdf",
+    "static/media/profile.png": "/cmndz-site/static/media/profile.fbd0cc83a10cb774a5ea.png",
     "static/media/know-sqlserver.svg": "/cmndz-site/static/media/know-sqlserver.81607df8fbe3786e307f4cc3357312c6.svg",
     "static/media/know-sass.svg": "/cmndz-site/static/media/know-sass.86a1a84be240f96da2517a1fc88278dd.svg",
     "static/media/know-xls.svg": "/cmndz-site/static/media/know-xls.387d12439098b4f50c15826406413afe.svg",
@@ -32,12 +33,12 @@
     "static/media/education.svg": "/cmndz-site/static/media/education.1d17f2d75a4c353e92f55bb758763799.svg",
     "static/media/menu-expand.svg": "/cmndz-site/static/media/menu-expand.b1286b830a7ed78ace416d1d0b9ab78a.svg",
     "static/media/menu-collapse.svg": "/cmndz-site/static/media/menu-collapse.ab719ce3e176b495fd997b76da1deb33.svg",
-    "main.339a0b7e.css.map": "/cmndz-site/static/css/main.339a0b7e.css.map",
-    "main.af18bcab.js.map": "/cmndz-site/static/js/main.af18bcab.js.map",
+    "main.5931de27.css.map": "/cmndz-site/static/css/main.5931de27.css.map",
+    "main.ec4c2c71.js.map": "/cmndz-site/static/js/main.ec4c2c71.js.map",
     "787.fb265414.chunk.js.map": "/cmndz-site/static/js/787.fb265414.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.339a0b7e.css",
-    "static/js/main.af18bcab.js"
+    "static/css/main.5931de27.css",
+    "static/js/main.ec4c2c71.js"
   ]
 }
