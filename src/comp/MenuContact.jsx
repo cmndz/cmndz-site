@@ -59,7 +59,7 @@ function MenuContact() {
 				</div>
 			</div>
 			<div className="footer">
-				<p className="footer-p">Version 00.002</p>
+				<p className="footer-p">Version 00.003</p>
 			</div>
 		</div>
 	);
