@@ -2,7 +2,7 @@
 	"name": "myweb",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "https://cmndz.github.io/cmndz-site",
+	"homepage": "https://cmndz.github.io/site",
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/react": "^13.3.0",
