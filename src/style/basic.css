@@ -236,55 +236,7 @@ ul {
 	color: var(--color-w01);
 	margin: 10px 15px;
 }
-.navbar-top {
-	width: 100vw;
-	height: 60px;
-	display: flex;
-	flex-direction: row;
-	background-color: var(--color-b01);
-	position: fixed;
-	left: 0;
-	top: 0;
-	z-index: 2;
-}
-.side {
-	width: 50%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-}
-.side-a {
-	display: none;
-}
-.navbar-body {
-	width: 100vw;
-	height: 100vh;
-	top: 60px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background-color: var(--color-b01);
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	z-index: 2;
-}
-.navbar-p {
-	color: var(--color-w02);
-}
-.body-a {
-	margin-top: 60px;
-}
-.navbar-body.hidden {
-	animation-name: sideOut;
-	animation-duration: 0.5s;
-	right: -100%;
-}
-.navbar-body.visible {
-	animation-name: sideIn;
-	animation-duration: 0.5s;
-	right: 0;
-}
+
 .--mnuhomecontainer {
 	justify-content: center;
 }
@@ -348,16 +300,6 @@ ul {
 	flex-direction: row;
 	justify-content: center;
 }
-.--navbarsideA {
-	justify-content: flex-start;
-	padding-left: 10px;
-}
-.--navbarsideB {
-	justify-content: flex-end;
-	padding-right: 10px;
-}
-
-
 #menuabout {
 	background-color: var(--color-w01);
 }
@@ -366,22 +308,6 @@ ul {
 }
 #menucontact {
 	background-color: var(--color-w01);
-}
-@keyframes sideOut {
-	from {
-		right: 0;
-	}
-	to {
-		right: -100%;
-	}
-}
-@keyframes sideIn {
-	from {
-		right: -100%;
-	}
-	to {
-		right: 0;
-	}
 }
 @media only screen and (min-width: 500px) {
 	.bloque,
@@ -473,24 +399,7 @@ ul {
 	.--menuaboutbloqueB {
 		margin-left: 24px;
 	}
-	.navbar-body,
-	.collapse-icon {
-		display: none;
-		z-index: -1;
-	}
-	.--navbarsideA {
-		width: 10%;
-	}
-	.--navbarsideB {
-		width: 90%;
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-	}
-	.side-a {
-		display: block;
-		margin: 0 13px;
-	}
+
 }
 @media only screen and (min-width: 1000px) {
 	.menu-first{
@@ -552,10 +461,5 @@ ul {
 		height: auto;
 		margin: 50px 125px 185px 0;
 	}
-	.--navbarsideA {
-		padding-left: 2vw;
-	}
-	.--navbarsideB {
-		padding-right: 2vw;
-	}
+
 }
