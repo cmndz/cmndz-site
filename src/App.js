@@ -1,19 +1,14 @@
-import { useState } from "react";
-import MenuHome from "./comp/MenuHome.jsx";
-import MenuAbout from "./comp/MenuAbout.jsx";
-import MenuFormExp from "./comp/MenuFormExp.jsx";
-import MenuContact from "./comp/MenuContact.jsx";
-import NavBar from "./comp/NavBar.jsx";
-
-import CV from "./resources/CV-202210.pdf";
-
-import { GlobalStyle } from "./comp/GlobalStyles.jsx";
-
-const version = "00.01.00";
+import "./styles/normalize.css";
+import "./styles/basics.css";
+import Home from "./comps/pages/Home";
+import About from "./comps/pages/About";
+import FormExp from "./comps/pages/FormExp";
+import Contact from "./comps/pages/Contact";
+import Navbar from "./comps/organisms/Navbar";
 
 let menus = [
 	{
-		id: "menuHome",
+		id: "Home",
 		name: "Inicio",
 		type: "menu",
 		visible: true,
@@ -21,7 +16,7 @@ let menus = [
 		posy: 0,
 	},
 	{
-		id: "menuAbout",
+		id: "About",
 		name: "Sobre mi",
 		type: "menu",
 		visible: true,
@@ -29,7 +24,7 @@ let menus = [
 		posy: 0,
 	},
 	{
-		id: "menuFormExp",
+		id: "FormExp",
 		name: "Formación y Experiencia",
 		type: "menu",
 		visible: true,
@@ -37,7 +32,7 @@ let menus = [
 		posy: 0,
 	},
 	{
-		id: "menuContact",
+		id: "Contact",
 		name: "Contacto",
 		type: "menu",
 		visible: true,
@@ -49,65 +44,19 @@ let menus = [
 		name: "Descargar CV",
 		type: "download",
 		visible: false,
-		file: CV,
+		//file: CV,
 		posy: 0,
 	},
 ];
 
-function updateMenusPosy() {
-	const menusmenus = menus.filter((menu) => menu.type === "menu");
-	for (let i = 0; i < menusmenus.length; i++) {
-		const element = document.getElementById(menusmenus[i].id);
-		if (element) {
-			const menuposy = element.offsetTop;
-			menus[i].posy = menuposy;
-		}
-	}
-}
-
-function updateCurrentMenu(setCurrentMenu) {
-	const posy = document.documentElement.scrollTop;
-	const menusmenus = menus.filter((menu) => menu.type === "menu");
-	const modificador = 100;
-
-	if (posy >= 0 && posy <= menusmenus[1].posy - modificador) {
-		setCurrentMenu(menusmenus[0].id);
-		return;
-	}
-	if (posy >= menusmenus[menusmenus.length - 1].posy - modificador) {
-		setCurrentMenu(menusmenus[menusmenus.length - 1].id);
-		return;
-	}
-	for (let i = 1; i < menusmenus.length; i++) {
-		if (posy >= menusmenus[i].posy - modificador && posy <= menusmenus[i + 1].posy - modificador) {
-			setCurrentMenu(menusmenus[i].id);
-			return;
-		}
-	}
-}
-
-function App() {
-	const [currentMenu, setCurrentMenu] = useState(menus[0].id);
-	window.addEventListener("load", () => {
-		updateMenusPosy();
-	});
-	window.addEventListener("resize", () => {
-		updateMenusPosy();
-	});
-	window.addEventListener("scroll", () => {
-		updateCurrentMenu(setCurrentMenu);
-	});
+export default function App() {
 	return (
-		<div className="App">
-			<GlobalStyle />
-			<MenuHome contact={menus[3]} download={menus[4]} />
-			<MenuAbout />
-			<MenuFormExp />
-			<MenuContact menus={menus} version={version} />
-			{/* <ControlMusic /> */}
-			<NavBar menus={menus} currentMenu={currentMenu} version={version} />
+		<div>
+			<Home />
+			<About />
+			<FormExp />
+			<Contact />
+			<Navbar menus={menus} version={"00.01.00"} />
 		</div>
 	);
 }
-
-export default App;
