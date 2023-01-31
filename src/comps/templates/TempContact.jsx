@@ -25,12 +25,12 @@ const Wrapper = styled.div`
 		}
 		.bloque {
 			width: 100%;
-			min-height: 50vh;
 			min-width: 250px;
 			&.bloqueA {
 				padding: 0 var(--lats) 0 var(--lats);
 				display: flex;
 				justify-content: center;
+				margin-bottom: 50px;
 			}
 		}
 	}

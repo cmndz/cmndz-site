@@ -1,53 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Icon from "../atoms/Icon";
 import styled from "styled-components";
 import track01 from "./../../resources/track02.mp3";
 import btnPlay from "./../../resources/btnPlay.svg";
 import btnPause from "./../../resources/btnPause.svg";
 
-let ctx, source, analyser, dataArray;
-let req;
-let promAnt = 0;
-let prom = 0;
-
 const Wrapper = styled.div`
-	width: 250px;
-	height: 250px;
-	min-width: 250px;
-	min-height: 250px;
+	width: 100%;
+	height: 100%;
+
 	position: relative;
-	border-radius: 50%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	canvas {
+		position: absolute;
+		background-color: var(--white);
+		z-index: 1;
+	}
 	.logo-container {
-		width: 100%;
-		height: 100%;
+		width: 150px;
+		height: 150px;
+		min-width: 150px;
+		min-height: 150px;
 		border-radius: 50%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		background-color: var(--white);
 		z-index: 2;
+		position: relative;
 		.icon {
+			width: 100px;
+			height: 100px;
+			min-width: 100px;
+			min-height: 100px;
 			transition: 0.25s;
 			&.--beat {
 				transform: scale(1.2);
 			}
 		}
-	}
-	.element {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		display: inline-block;
-		width: 7px;
-		height: 7px;
-		background-color: var(--black);
-		//border-radius: 50px;
-		z-index: 1;
-		transform-origin: top left;
-		transition: 0.25s;
 	}
 	.button {
 		position: absolute;
@@ -59,8 +52,8 @@ const Wrapper = styled.div`
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		right: 15px;
-		bottom: 15px;
+		right: 1px;
+		bottom: 1px;
 		z-index: 2;
 		cursor: pointer;
 		img {
@@ -71,94 +64,162 @@ const Wrapper = styled.div`
 			}
 		}
 	}
+
+	@media only screen and (min-width: 550px) {
+		.logo-container {
+			width: 250px;
+			height: 250px;
+			min-width: 250px;
+			min-height: 250px;
+			.icon {
+				width: auto;
+				height: auto;
+				min-width: none;
+				min-height: none;
+			}
+		}
+		.button {
+			right: 15px;
+			bottom: 15px;
+		}
+	}
 `;
 
-function Elements({ cant_elements }) {
-	let elems = [];
-	for (let i = 0; i < cant_elements; i++) {
-		let key = i;
-		elems.push(<span key={key} className="element"></span>);
-	}
-	return <div>{elems}</div>;
-}
-function elementsInitPos(cant_elements) {
-	const elems = document.querySelectorAll(".element");
-	for (let i = 0; i < cant_elements; i++) {
-		let calc = Math.trunc(i * (360 / cant_elements));
-		elems[i].style.transform = `rotateZ(${calc}deg) translate(115px)`;
-	}
-}
-function elementsUpdate(cant_elements) {
-	const elems = document.querySelectorAll(".element");
-	const logo = document.querySelector(".logo-container .icon");
-	req = requestAnimationFrame(() => {
-		elementsUpdate(cant_elements);
-	});
-	analyser.getByteFrequencyData(dataArray);
-	for (let i = 0; i < cant_elements; i++) {
-		let item = dataArray[i * 2];
-		item = 7 + (item * 400) / 250; // 150) * 25;
-		//item = 7 + (item > 250? 75 : item > 200 ? 40 : item > 150 ? 20 : item > 100 ? 10 :  0);
-		elems[i].style.width = `${item}px`;
-		prom = prom + item;
-	}
-	prom = prom / cant_elements;
-	if (prom > promAnt + 1) {
-		logo.classList.add("--beat");
-	} else {
-		logo.classList.remove("--beat");
-	}
-	promAnt = prom;
-}
-
-function handlePlay(play, setPlay, cant_elements) {
-	setPlay(!play);
-	const audio = document.querySelector("audio");
-	if (play === false) {
-		if (source === undefined) {
-			ctx = new (window.AudioContext || window.webkitAudioContext)();
-			analyser = ctx.createAnalyser();
-			analyser.fftSize = 2048; //32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, and 32768
-			dataArray = new Uint8Array(analyser.frequencyBinCount);
-			source = ctx.createMediaElementSource(audio);
-			source.connect(analyser);
-			analyser.connect(ctx.destination);
-		}
-		audio.play();
-		elementsUpdate(cant_elements);
-	} else {
-		audio.pause();
-		promAnt = 0;
-		prom = 0;
-		setTimeout(() => {
-			cancelAnimationFrame(req);
-		}, 1000);
-	}
-}
+let audioCtx, audioSrc, audioAnalyser, audioDataArray;
 
 export default function ControlMusic({ cant_elements }) {
-	window.addEventListener("load", () => {
-		elementsInitPos(cant_elements);
-	});
 	const [play, setPlay] = useState(false);
+	const [canvasCtx, setCanvasCtx] = useState(null);
+	const [dimensions, setDimensions] = useState({
+		width: null,
+		height: null,
+	});
+	const canvasRef = useRef(null);
+	let prom = 0;
+	let promAnt = 0;
+
+	useEffect(function () {
+		const canvas = canvasRef.current;
+		const ctx = canvas.getContext("2d");
+		setCanvasCtx(ctx);
+		ctx.fillStyle = "#ffffff";
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+		let wrapperDats = document.getElementsByClassName("ControlMusic")[0].getBoundingClientRect();
+		setDimensions({
+			width: wrapperDats.width,
+			height: wrapperDats.height,
+		});
+
+		window.addEventListener("resize", handleResize, false);
+	}, []);
+
+	const drawAudio = (audioAnalyser) => {
+		let animation = requestAnimationFrame(() => drawAudio(audioAnalyser));
+		const audio = document.querySelector("audio");
+		const bufferLength = audioAnalyser.frequencyBinCount;
+		audioDataArray = new Uint8Array(bufferLength);
+		//const barWidth = (WIDTH / bufferLength) * 3;
+		audioAnalyser.getByteFrequencyData(audioDataArray);
+		canvasCtx.fillStyle = "#ffffff";
+		canvasCtx.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+
+		let init = window.innerWidth > 550 ? 120 : 75;
+		let adjust = window.innerWidth > 550 ? 1 : 3/5;
+
+		canvasCtx.save();
+		canvasCtx.translate(canvasRef.current.width / 2, canvasRef.current.height / 2);
+		canvasCtx.rotate(Math.PI * 1.5);
+		let cant = cant_elements;
+		let ang = (2 * Math.PI) / cant;
+		let val = [];
+
+		for (let i = 0; i < cant; i++) {
+			let decibel;
+			if (i <= cant / 2) {
+				val[i] = audioDataArray[i] * adjust;
+				decibel = audioDataArray[i] * adjust;
+			} else {
+				decibel = val[cant - i];
+			}
+			prom += decibel;
+			canvasCtx.beginPath();
+			canvasCtx.fillStyle = "#000000";
+			canvasCtx.rect(init, 0, decibel, 7);
+			canvasCtx.fill();
+			canvasCtx.rotate(ang);
+		}
+		canvasCtx.restore();
+
+		const logo = document.querySelector(".logo-container .icon");
+		prom = prom / cant_elements;
+		if (prom > promAnt) {
+			logo.classList.add("--beat");
+		} else {
+			logo.classList.remove("--beat");
+		}
+		promAnt = prom;
+
+		if (audio.paused) {
+			let sumDecibel = 0;
+			for (let i = 0; i < cant; i++) {
+				let decibel = audioDataArray[i];
+				sumDecibel += decibel;
+			}
+			if (sumDecibel === 0) {
+				cancelAnimationFrame(animation);
+				return;
+			}
+		}
+	};
+
+	const handlePlay = (play, setPlay) => {
+		const audio = document.querySelector("audio");
+		if (play === false) {
+			if (!audioSrc) {
+				audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+				audioAnalyser = audioCtx.createAnalyser();
+				audioAnalyser.fftSize = 2048;
+				audioSrc = audioCtx.createMediaElementSource(audio);
+				audioSrc.connect(audioAnalyser);
+				audioAnalyser.connect(audioCtx.destination);
+			}
+			audio.play();
+			drawAudio(audioAnalyser);
+		} else {
+			audio.pause();
+		}
+		setPlay(!play);
+	};
+
+	const handleResize = () => {
+		let wrapperDats = document.getElementsByClassName("ControlMusic")[0].getBoundingClientRect();
+		setDimensions({
+			width: wrapperDats.width,
+			height: wrapperDats.height,
+		});
+	};
+
 	return (
-		<Wrapper className="controlMusic">
-			<audio src={track01}></audio>
+		<Wrapper className="ControlMusic">
+			<audio>
+				<source src={track01}></source>
+			</audio>
+			<canvas ref={canvasRef} width={dimensions.width} height={dimensions.height}></canvas>
 			<div className="logo-container">
-				<Icon type="LOGOB" size="maxmax"/>
-			</div>
-			<Elements cant_elements={cant_elements} />
-			<div
-				className="button"
-				onClick={() => {
-					handlePlay(play, setPlay, cant_elements);
-				}}
-			>
-				{play === true ? (
-					<img src={btnPlay} alt="" className="btnPlay" />
-				) : (
-					<img src={btnPause} alt="" className="btnPause" />
-				)}
+				<Icon type="LOGOB" size="maxmax" />
+				<div
+					className="button"
+					onClick={() => {
+						handlePlay(play, setPlay);
+					}}
+				>
+					{play === true ? (
+						<img src={btnPlay} alt="" className="btnPlay" />
+					) : (
+						<img src={btnPause} alt="" className="btnPause" />
+					)}
+				</div>
 			</div>
 		</Wrapper>
 	);

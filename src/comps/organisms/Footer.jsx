@@ -39,7 +39,7 @@ const Wrapper = styled.div`
 	}
 
 	@media only screen and (min-width: 750px) {
-		min-height: 40vh;
+		min-height: 25vh;
 		padding: 50px var(--lats) 0 var(--lats);
 		flex-wrap: nowrap;
 		.seccionA {
