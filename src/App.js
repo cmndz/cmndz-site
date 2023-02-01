@@ -49,14 +49,15 @@ let menus = [
 	},
 ];
 
+const version = "00.02.01";
 export default function App() {
 	return (
 		<div>
 			<Home />
 			<About />
 			<FormExp />
-			<Contact />
-			<Navbar menus={menus} version={"00.01.00"} />
+			<Contact version={version} />
+			<Navbar menus={menus} version={version} />
 		</div>
 	);
 }

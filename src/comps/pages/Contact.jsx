@@ -42,7 +42,6 @@ const MENUS = [
 	},
 ];
 
-const VERSION = "00.01.00";
-export default function Contact() {
-	return <TempHome title={"Contacto"} menus={MENUS} version={VERSION} />;
+export default function Contact({ version }) {
+	return <TempHome title={"Contacto"} menus={MENUS} version={version} />;
 }
