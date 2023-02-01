@@ -68,7 +68,7 @@ const LISTA_ITEMS = [
 		header: "Instituto Nuestra Señora del Perpetuo Socorro",
 		interval: "Marzo 2010 - Diciembre 2012",
 		detail:
-			"Complete mis estudios secundarios con el título **Bachiller con orientación en Economia y Adminsitracion**.",
+			"Complete mis estudios secundarios con el título **Bachiller con orientación en Economia y Administración**.",
 		list: "",
 		tags: "",
 	},
