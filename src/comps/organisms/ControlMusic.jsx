@@ -14,10 +14,15 @@ const Wrapper = styled.div`
 	justify-content: center;
 	align-items: center;
 
+	/* audio {
+		z-index: 1000;
+	} */
+
 	canvas {
 		position: absolute;
 		background-color: var(--white);
 		z-index: 1;
+		//border: 1px solid red;
 	}
 	.logo-container {
 		width: 150px;
@@ -98,6 +103,9 @@ export default function ControlMusic({ cant_elements }) {
 	let prom = 0;
 	let promAnt = 0;
 
+	let recorrido = 0;
+	let step = 1;
+
 	useEffect(function () {
 		const canvas = canvasRef.current;
 		const ctx = canvas.getContext("2d");
@@ -125,7 +133,7 @@ export default function ControlMusic({ cant_elements }) {
 		canvasCtx.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height);
 
 		let init = window.innerWidth > 550 ? 120 : 75;
-		let adjust = window.innerWidth > 550 ? 1 : 3/5;
+		let adjust = window.innerWidth > 550 ? 1 : 3 / 5;
 
 		canvasCtx.save();
 		canvasCtx.translate(canvasRef.current.width / 2, canvasRef.current.height / 2);
@@ -151,6 +159,36 @@ export default function ControlMusic({ cant_elements }) {
 		}
 		canvasCtx.restore();
 
+		let wrapperDats = document.getElementsByClassName("ControlMusic")[0].getBoundingClientRect();
+		let ch = wrapperDats.height;
+		let cw = wrapperDats.width;
+
+		let txt = "Set para fiestas (...) - Mr Pig & Bonclaus ( Bonhaus Santa Claus )";
+		let txtw = canvasCtx.measureText(txt).width;
+		let txtCant = (cw * 2) / txtw;
+
+		for (var i = 0; i < ch / 50; i++) {
+			if (window.innerWidth > 550) {
+				canvasCtx.font = "600 1.3rem Raleway";
+			} else {
+				canvasCtx.font = "500 1rem Raleway";
+			}
+			canvasCtx.fillStyle = "rgba(0, 0, 0, 0.25)";
+			if (i % 2 === 0) {
+				for (let j = 0; j < txtCant; j++) {
+					canvasCtx.fillText(txt, -txtw - j * (txtw + 50) + recorrido, i * 50 + 40);
+				}
+			} else {
+				for (let j = 0; j < txtCant; j++) {
+					canvasCtx.fillText(txt, cw + j * (txtw + 50) - recorrido, i * 50 + 40);
+				}
+			}
+		}
+		recorrido += step;
+		if (recorrido === Math.trunc(cw + txtw + 50)) {
+			recorrido -= Math.trunc(txtw + 50);
+		}
+
 		const logo = document.querySelector(".logo-container .icon");
 		prom = prom / cant_elements;
 		if (prom > promAnt) {
@@ -160,6 +198,11 @@ export default function ControlMusic({ cant_elements }) {
 		}
 		promAnt = prom;
 
+		if (audio.ended) {
+			audio.currentTime = 0;
+			setPlay(false);
+		}
+
 		if (audio.paused) {
 			let sumDecibel = 0;
 			for (let i = 0; i < cant; i++) {
@@ -167,6 +210,8 @@ export default function ControlMusic({ cant_elements }) {
 				sumDecibel += decibel;
 			}
 			if (sumDecibel === 0) {
+				canvasCtx.fillStyle = "#ffffff";
+				canvasCtx.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height);
 				cancelAnimationFrame(animation);
 				return;
 			}

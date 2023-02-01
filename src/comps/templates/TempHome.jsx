@@ -7,7 +7,7 @@ const Wrapper = styled.div`
 	min-height: 100vh;
 	padding: var(--menu-top) 0 0 0;
 	display: flex;
-	overflow: hidden;
+	overflow-y: hidden;
 	.container {
 		width: 100vw;
 		height: calc(100vh - var(--menu-top));
@@ -19,7 +19,8 @@ const Wrapper = styled.div`
 		align-items: center;
 		position: relative;
 		.block {
-			width: 100%;
+			width: 100vw;
+			height: 100%;
 			&.blockA {
 				flex-grow: 1;
 				display: flex;
@@ -33,9 +34,9 @@ const Wrapper = styled.div`
 	}
 	@media only screen and (min-width: 550px) {
 		.container {
-			.block.blockA {
+			/* .block.blockA {
 				padding-bottom: 5rem;
-			}
+			} */
 
 			.textBoxWButtons {
 				position: absolute;

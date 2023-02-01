@@ -17,11 +17,12 @@ const Wrapper = styled.div`
 	}
 	.seccionB {
 		width: 50%;
-		h4 {
-			padding: 10px 0 0 10px;
+		.text.p5 {
+			padding:3px 0 0 15px;
 		}
 	}
 	.seccionC {
+		text-align: center;
 		width: 50%;
 		img {
 			margin: 10px;
@@ -85,7 +86,7 @@ function Menus({ menus }) {
 			{menusvisibles.map((menu) => {
 				return (
 					<a key={menu.id} href={`#${menu.id}`}>
-						<Text size="p5">&nbsp;&nbsp;{menu.name}</Text>
+						<Text size="p5">{menu.name}</Text>
 					</a>
 				);
 			})}
