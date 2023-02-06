@@ -49,7 +49,7 @@ let menus = [
 	},
 ];
 
-const version = "00.02.01";
+const version = "01.00.00";
 export default function App() {
 	return (
 		<div>

@@ -64,7 +64,7 @@ const TOOLS = {
 		},
 		{
 			type_icon: "SQLS",
-			text: "SQL SMS",
+			text: "SQL Server MS",
 		},
 		{
 			type_icon: "ILLUS",

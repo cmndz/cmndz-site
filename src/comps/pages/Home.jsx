@@ -2,7 +2,7 @@ import TempHome from "../templates/TempHome.jsx";
 import CV from "../../resources/CV-202210.pdf";
 
 const CONTROLMUSIC_CANTELEMENTS = 180;
-const TEXTBOXWBUTTONS_TEXT = ["wwKORE", "(Carlos Méndez)", "Desarrollador Web Front End"];
+const TEXTBOXWBUTTONS_TEXT = ["KORE", "(Carlos Alfredo Méndez)", "Desarrollador Web Front End"];
 const TEXTBOXWBUTTONS_LINKS = ["Contact", CV];
 
 export default function Home() {
