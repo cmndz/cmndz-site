@@ -19,14 +19,12 @@
 }
 *::-webkit-scrollbar {
 	display: none;
-	color: var(--black);
 }
 
 a:link,
 a:visited,
 a:active {
 	text-decoration: none;
-	color: var(--black);
 }
 ul {
 	margin: 5px 0 0 25px;

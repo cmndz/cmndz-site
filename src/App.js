@@ -1,10 +1,11 @@
 import "./styles/normalize.css";
 import "./styles/basics.css";
-import Home from "./comps/pages/Home";
-import About from "./comps/pages/About";
-import FormExp from "./comps/pages/FormExp";
-import Contact from "./comps/pages/Contact";
-import Navbar from "./comps/organisms/Navbar";
+import Home from "./config/Home";
+import About from "./config/About";
+import FormExp from "./config/FormExp";
+import Contact from "./config/Contact";
+import Navbar from "./components/layouts/Navbar";
+import { useState } from "react";
 
 let menus = [
 	{
@@ -49,15 +50,18 @@ let menus = [
 	},
 ];
 
-const version = "01.00.00";
+const version = "01.01.00";
 export default function App() {
+	const [theme, setTheme] = useState("light");
+	const [play, setPlay] = useState(false);
+
 	return (
 		<div>
-			<Home />
+			<Home play={play} setPlay={setPlay} />
 			<About />
 			<FormExp />
 			<Contact version={version} />
-			<Navbar menus={menus} version={version} />
+			<Navbar menus={menus} version={version} theme={theme} setTheme={setTheme} play={play} setPlay={setPlay} />
 		</div>
 	);
 }
