@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/site/static/css/main.70ad06f9.css",
-    "main.js": "/site/static/js/main.20ccd4a7.js",
+    "main.js": "/site/static/js/main.02a2b217.js",
     "static/js/787.fb265414.chunk.js": "/site/static/js/787.fb265414.chunk.js",
     "static/media/Consume Me (NCS Release) - by CITYWLKR & Voicians.mp3": "/site/static/media/Consume Me (NCS Release) - by CITYWLKR & Voicians.e9148d07069d487fa629.mp3",
     "static/media/CV-202210.pdf": "/site/static/media/CV-202210.62d1323771f18b233a8d.pdf",
@@ -48,11 +48,11 @@
     "static/media/menu-collapse.svg": "/site/static/media/menu-collapse.96653e3af1bf8cd8854727fb9ba72c0b.svg",
     "static/media/audioPlay.svg": "/site/static/media/audioPlay.088f646e53307adadbd00d1bef1cc474.svg",
     "main.70ad06f9.css.map": "/site/static/css/main.70ad06f9.css.map",
-    "main.20ccd4a7.js.map": "/site/static/js/main.20ccd4a7.js.map",
+    "main.02a2b217.js.map": "/site/static/js/main.02a2b217.js.map",
     "787.fb265414.chunk.js.map": "/site/static/js/787.fb265414.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.70ad06f9.css",
-    "static/js/main.20ccd4a7.js"
+    "static/js/main.02a2b217.js"
   ]
 }
